@@ -65,7 +65,7 @@
 	</div>
 	<div class="btn-group">
 	<tr>
-	<button id="givancy" class="givancy" style="width:60; height:40;" onclick="location='index2'">Givancy</button>
+	<button id="givancy" class="givancy" style="width:60; height:40;" onclick="location='arr'">Givancy</button>
 	</tr>
 	
 	</div>
