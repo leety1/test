@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.stream.*;
 import com.sun.source.tree.BinaryTree;
+import java.util.Map.Entry;
 @RestController
 public class Controller {
 	@GetMapping("/demo")
@@ -62,6 +63,21 @@ public class Controller {
 	@RequestMapping("/video")
 	public @ResponseBody String ind2() throws Exception {
 		return "index2";
+	}
+	@RequestMapping("/map")
+	public  @ResponseBody HashMap<Object, Object> in3() throws Exception{
+		var map = new HashMap<>();
+		map.put(1, "key");
+		for(Entry<Object, Object> ent : map.entrySet()) {
+			System.out.println("[Key]:"+ent.getKey()+"[val]:"+ent.getValue());
+			
+		}
+		return map;
+		
+		
+		
+		
+		
 	}
 	
 }
