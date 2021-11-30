@@ -11,14 +11,12 @@ import lombok.extern.java.Log;
 
 
 
-@Service
-@Log
-public class GraphServiceImpl implements GraphService {
-	@Setter(onMethod_=@Autowired)
-	private GraphMapper mapper;
-	
-	@Override
-	public List<GraphVO> getGraph(){
-		return mapper.getGraph();
-	}
-}
+/*
+ * @Service
+ * 
+ * @Log public class GraphServiceImpl implements GraphService {
+ * 
+ * @Setter(onMethod_=@Autowired) private GraphMapper mapper;
+ * 
+ * @Override public List<GraphVO> getGraph(){ return mapper.getGraph(); } }
+ */

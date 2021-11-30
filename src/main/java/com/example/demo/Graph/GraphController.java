@@ -17,26 +17,24 @@ import com.google.gson.Gson;
 import lombok.Setter;
 import lombok.extern.java.Log;
 
-@Controller
-@Log
-public class GraphController {
-	private static final Logger logger = LoggerFactory.getLogger(GraphController.class);
-	
-	@Setter(onMethod_= @Autowired)
-	private GraphService GS;
-	
-	@RequestMapping(value = "dateIncome",method=RequestMethod.GET)
-	public String dateIncome(Locale locale,Model model) {
-		return "dateIncome";
-	}
-	@RequestMapping(value="incomeList",method=RequestMethod.GET,produces="text/plain;charset=UTF-8")
-	public @ResponseBody String GraphList(Locale locale,Model model) {
-		Gson gson = new Gson();
-		List<GraphVO> GVList = GS.getGraph();
-		
-		return gson.toJson(GVList);
-	}
-	
-		
-	}
-
+/*
+ * @Controller
+ * 
+ * @Log public class GraphController { private static final Logger logger =
+ * LoggerFactory.getLogger(GraphController.class);
+ * 
+ * @Setter(onMethod_= @Autowired) private GraphService GS;
+ * 
+ * @RequestMapping(value = "dateIncome",method=RequestMethod.GET) public String
+ * dateIncome(Locale locale,Model model) { return "dateIncome"; }
+ * 
+ * @RequestMapping(value="incomeList",method=RequestMethod.GET,produces=
+ * "text/plain;charset=UTF-8") public @ResponseBody String GraphList(Locale
+ * locale,Model model) { Gson gson = new Gson(); List<GraphVO> GVList =
+ * GS.getGraph();
+ * 
+ * return gson.toJson(GVList); }
+ * 
+ * 
+ * }
+ */
