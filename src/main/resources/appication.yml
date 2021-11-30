@@ -1,0 +1,20 @@
+application:
+  version: 1.0.0
+  servers:
+  - ip: '127.0.0.1'
+    path: '/path1'
+  - ip: '127.0.0.2'
+    path: '/path2'
+   
+spring:
+  profiles:
+    active: local   
+  level:
+    root: debug
+
+env:
+  servers: helloworld
+  obj:
+    number: 10
+    sec: 10s
+    

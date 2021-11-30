@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Spliterator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.stream.*;
 import com.sun.source.tree.BinaryTree;
 import java.util.Map.Entry;
+import com.example.demo.config.TestConfig;
+
 @RestController
 public class Controller {
+	
+	@Autowired
+	TestConfig testConfig;
+
+	
 	@GetMapping("/demo")
 	public String demo() {
 		return "데모 리턴";
@@ -73,11 +81,10 @@ public class Controller {
 			
 		}
 		return map;
-		
-		
-		
-		
-		
 	}
+	
+	
+	
+	
 	
 }
