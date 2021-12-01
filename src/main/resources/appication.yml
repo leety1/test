@@ -17,4 +17,9 @@ env:
   obj:
     number: 10
     sec: 10s
-    
+
+jwt:
+  token:
+    secret-key: "hello"
+    expTime: 1800000
+    issuer: "gunkim"    
