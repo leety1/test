@@ -11,6 +11,15 @@ spring:
     active: local   
   level:
     root: debug
+    
+  import:
+    optional:configserver: http://localhost:7070
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://database-1.cfpy0mnyxcis.us-east-2.rds.amazonaws.com/sys
+    username: admin
+    password: test12345
+
 
 env:
   servers: helloworld
@@ -23,3 +32,8 @@ jwt:
     secret-key: "hello"
     expTime: 1800000
     issuer: "gunkim"    
+
+    
+mybatis:
+    #type-aliases-package: model 사용 시 매핑할 패키지 경로를 작성합니다.
+    mapper-locations: mappers/**/*.xml

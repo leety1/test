@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
 import java.util.stream.*;
 import com.sun.source.tree.BinaryTree;
 import java.util.Map.Entry;
 import com.example.demo.config.TestConfig;
+
 
 @RestController
 public class Controller {
@@ -24,10 +27,20 @@ public class Controller {
 	@Autowired
 	TestConfig testConfig;
 
+	@GetMapping("/")
+	public String getIndex() {
+		return "index";
+	}
+	@GetMapping("/main")
+		public String getMain() {
+			return "main";
+		}
 	
-	@GetMapping("/demo")
-	public String demo() {
-		return "데모 리턴";
+	@GetMapping("/Login")
+	public ModelAndView getLoginForm() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("Login");
+		return mv;
 	}
 	@GetMapping("/demoapi")
 	public Map<String,Object> demoapi(){
@@ -82,6 +95,11 @@ public class Controller {
 		}
 		return map;
 	}
+	
+	/*
+	 * @Autowired private UserRepository userRepo;
+	 */
+	
 	
 	
 	
