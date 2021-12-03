@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Spliterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,27 +23,27 @@ import java.util.Map.Entry;
 import com.example.demo.config.TestConfig;
 
 
-@RestController
-public class Controller {
+@Controller
+public class MainController {
 	
 	@Autowired
 	TestConfig testConfig;
 
-	@GetMapping("/")
-	public String getIndex() {
+	@RequestMapping(value = "/Login",method = RequestMethod.GET)
+	public String getIndex(Model md) {
+		md.addAttribute("serverName","hihihi");
+		return "Login";
+	}
+	@GetMapping("/index")
+	public String getLoginForm() {
+		
 		return "index";
 	}
-	@GetMapping("/main")
-		public String getMain() {
-			return "main";
-		}
+//	@GetMapping("/index2")
+//	public String getMain() {
+//		return "index2";
+//	}
 	
-	@GetMapping("/Login")
-	public ModelAndView getLoginForm() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("Login");
-		return mv;
-	}
 	@GetMapping("/demoapi")
 	public Map<String,Object> demoapi(){
 		Map<String, Object> map = new HashMap<>();
@@ -81,10 +83,10 @@ public class Controller {
 		li.stream().filter(t->t.length()>5);
 		return li.stream().map(a->a.toUpperCase());
 	}
-	@RequestMapping("/video")
-	public @ResponseBody String ind2() throws Exception {
-		return "index2";
-	}
+//	@RequestMapping("/video")
+//	public @ResponseBody String ind2() throws Exception {
+//		return "index2";
+//	}
 	@RequestMapping("/map")
 	public  @ResponseBody HashMap<Object, Object> in3() throws Exception{
 		var map = new HashMap<>();

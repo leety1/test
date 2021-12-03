@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	welcome to my ${serverName}
 	<form action="/login" method="POST">
 		<input type="text" name = "username">
 		<input type="password" name="password">

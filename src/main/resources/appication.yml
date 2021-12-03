@@ -11,6 +11,13 @@ spring:
     active: local   
   level:
     root: debug
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp   
+handlebars:
+  suffix: .jsp
+  expose-session-attributes: true
     
   import:
     optional:configserver: http://localhost:7070
@@ -19,7 +26,11 @@ spring:
     url: jdbc:mysql://database-1.cfpy0mnyxcis.us-east-2.rds.amazonaws.com/sys
     username: admin
     password: test12345
-
+    
+  
+      
+#  handlebars:
+#  expose-session-attributes: true
 
 env:
   servers: helloworld
@@ -37,3 +48,7 @@ jwt:
 mybatis:
     #type-aliases-package: model 사용 시 매핑할 패키지 경로를 작성합니다.
     mapper-locations: mappers/**/*.xml
+    
+
+
+   

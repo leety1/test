@@ -5,6 +5,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.example.demo.login.MyLoginSuccessHandler;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityCofig extends WebSecurityConfigurerAdapter {
@@ -24,7 +26,8 @@ public class SecurityCofig extends WebSecurityConfigurerAdapter {
 				.loginPage("/Login")
 				.loginProcessingUrl("/doLogin")
 				.usernameParameter("id")
-				.passwordParameter("pw");
+				.passwordParameter("pw")
+				.successHandler(new MyLoginSuccessHandler());
 	}
 
 }

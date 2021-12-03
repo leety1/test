@@ -18,7 +18,7 @@ public class DatabaseConfig {
 		dsb.password("test12345");
 		dsb.url("jdbc:mysql://database-1.cfpy0mnyxcis.us-east-2.rds.amazonaws.com/sys?useSSL=false&serverTimezone=UTC");
 		
-		System.out.println("DB 접속 Succes"+dsb);
+		System.out.println("DB 접속 Succes ===== " + dsb);
 		return dsb.build();	
 	}
 	
