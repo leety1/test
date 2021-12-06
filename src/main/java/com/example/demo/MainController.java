@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Spliterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,8 @@ import java.util.stream.*;
 import com.sun.source.tree.BinaryTree;
 import java.util.Map.Entry;
 import com.example.demo.config.TestConfig;
+import com.example.demo.login.UserEntity;
+import com.example.demo.login.UserRepository;
 
 
 @Controller
@@ -38,10 +41,20 @@ public class MainController {
 	public String getLoginForm() {
 		return "index";
 	}
-//	@GetMapping("/index2")
-//	public String getMain() {
-//		return "index2";
-//	}
+	@Autowired
+	private UserRepository userReposi;
+	@Autowired
+	private PasswordEncoder passEncoder;
+	@GetMapping("/signup")
+	public String signUp() {
+		UserEntity user = UserEntity.builder()
+				.name("galid")
+				.password(passEncoder.encode("1234"))
+				.role("user")
+				.build();
+		userReposi.save(user);
+		return "redirect:/login";
+	}
 	
 	@GetMapping("/demoapi")
 	public Map<String,Object> demoapi(){

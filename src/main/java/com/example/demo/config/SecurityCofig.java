@@ -18,7 +18,7 @@ public class SecurityCofig extends WebSecurityConfigurerAdapter {
 			.csrf()
 				.disable()
 			.authorizeRequests()
-				.antMatchers("/Login")
+				.antMatchers("/Login","/signUp")
 					.permitAll()
 				.anyRequest()
 				.authenticated()
