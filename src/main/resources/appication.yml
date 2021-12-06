@@ -15,9 +15,9 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp   
-handlebars:
-  suffix: .jsp
-  expose-session-attributes: true
+#handlebars:
+#  suffix: .jsp
+#  expose-session-attributes: true
     
   import:
     optional:configserver: http://localhost:7070

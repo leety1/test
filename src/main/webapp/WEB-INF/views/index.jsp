@@ -68,6 +68,7 @@
 	<div class="btn-group">
 	<tr>
 	<button id="givancy" class="givancy" style="width:60; height:40;" onclick="location='arr'">Givancy</button>
+	<a href="/doLogout">·Î±×¾Æ¿ô</a>
 	</tr>
 	
 	</div>

@@ -8,9 +8,9 @@
 </head>
 <body>
 	welcome to my ${serverName}
-	<form action="/login" method="POST">
-		<input type="text" name = "username">
-		<input type="password" name="password">
+	<form action="/doLogin" method="POST">
+		<input type="text" name = "id">
+		<input type="password" name="pw">
 		<input type="submit" value ="Login">
 	</form>
 

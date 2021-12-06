@@ -29,14 +29,13 @@ public class MainController {
 	@Autowired
 	TestConfig testConfig;
 
-	@RequestMapping(value = "/Login",method = RequestMethod.GET)
-	public String getIndex(Model md) {
-		md.addAttribute("serverName","hihihi");
-		return "Login";
-	}
-	@GetMapping("/index")
-	public String getLoginForm() {
+	@GetMapping("/Login")
+	public String getIndex() {
 		
+		return "LoginPage";
+	}
+	@GetMapping("/")
+	public String getLoginForm() {
 		return "index";
 	}
 //	@GetMapping("/index2")
