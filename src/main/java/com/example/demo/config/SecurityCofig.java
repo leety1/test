@@ -1,11 +1,12 @@
 package com.example.demo.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import com.example.demo.login.MyLoginSuccessHandler;
 
 @Configuration
@@ -18,7 +19,7 @@ public class SecurityCofig extends WebSecurityConfigurerAdapter {
 			.csrf()
 				.disable()
 			.authorizeRequests()
-				.antMatchers("/Login","/signUp")
+				.antMatchers("/Login","/signUp","/index","/Chart")
 					.permitAll()
 				.anyRequest()
 				.authenticated()
@@ -35,5 +36,13 @@ public class SecurityCofig extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/login");
 				
 	}
+	@Bean
+	public PasswordEncoder passwordEncoder(){
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		System.out.println("머지 이건");
+		return encoder;
+		
+	}
+
 
 }

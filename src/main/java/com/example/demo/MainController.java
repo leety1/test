@@ -37,7 +37,7 @@ public class MainController {
 		
 		return "LoginPage";
 	}
-	@GetMapping("/")
+	@GetMapping("/index")
 	public String getLoginForm() {
 		return "index";
 	}
@@ -45,15 +45,9 @@ public class MainController {
 	private UserRepository userReposi;
 	@Autowired
 	private PasswordEncoder passEncoder;
-	@GetMapping("/signup")
+	@GetMapping("/signUp")
 	public String signUp() {
-		UserEntity user = UserEntity.builder()
-				.name("galid")
-				.password(passEncoder.encode("1234"))
-				.role("user")
-				.build();
-		userReposi.save(user);
-		return "redirect:/login";
+		return "signUp";
 	}
 	
 	@GetMapping("/demoapi")
@@ -63,16 +57,9 @@ public class MainController {
 		map.put("birthdday",940813);
 		return map;
 	}
-	@GetMapping("/List")
-	public List<String> List(String[] arr){
-		List<String> l = new ArrayList<String>();
-		l.add("제니퍼");
-		l.add("제니퍼1");
-		l.add("제니퍼2");
-		l.add("제니퍼3");
-		l.add("제니퍼4");
-		
-		return l;
+	@GetMapping("/Chart")
+	public String Chart(){
+		return "Graph";
 		/*
 		 * for(String str:arr) { System.out.println(str); }
 		 */

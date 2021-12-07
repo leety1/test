@@ -13,6 +13,7 @@
 		<input type="password" name="pw">
 		<input type="submit" value ="Login">
 	</form>
-
+	<input type="submit" value ="Sign Up Page" onClick="location.href='/signUp'";>
+	<input type="submit" value ="Index Page" onClick="location.href='/index'";>
 </body>
 </html>

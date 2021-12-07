@@ -79,7 +79,7 @@ $("#givancy").on({
 	click:function(){
 	$.ajax({
 		type:"GET",
-		url:"index3",
+		url:"List",
 		success: function(data){
 			console.log(data);
 			$('.string').html(data);
