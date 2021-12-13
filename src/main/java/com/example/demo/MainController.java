@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Spliterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,17 +22,29 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.stream.*;
 import com.sun.source.tree.BinaryTree;
+
+import lombok.extern.log4j.Log4j2;
+
 import java.util.Map.Entry;
 import com.example.demo.config.TestConfig;
-import com.example.demo.login.UserEntity;
-import com.example.demo.login.UserRepository;
+import com.example.demo.domain.UserEntity;
+import com.example.demo.domain.UserRepository;
 
 
 @Controller
+@Log4j2
 public class MainController {
-	
+	@Autowired
+	private UserRepository uRepo;
+	@Autowired
+	private PasswordEncoder paEnc;
 	@Autowired
 	TestConfig testConfig;
+	
+	@RequestMapping({"/hello"})
+	public String firstPage() {
+		return "Hello World";
+	}
 
 	@GetMapping("/Login")
 	public String getIndex() {
@@ -39,15 +53,28 @@ public class MainController {
 	}
 	@GetMapping("/index")
 	public String getLoginForm() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if(principal instanceof UserDetails) {
+			String username = ((UserDetails)principal).getUsername();
+			System.out.println(username);
+		}else{
+			String username = principal.toString();
+			System.out.println(username+"이건 else");
+		}
 		return "index";
 	}
-	@Autowired
-	private UserRepository userReposi;
-	@Autowired
-	private PasswordEncoder passEncoder;
+	
 	@GetMapping("/signUp")
 	public String signUp() {
-		return "signUp";
+		Map<String, Object> map = new HashMap<>();
+		UserEntity user  = UserEntity.builder()
+				.name("Leety")
+				.password(paEnc.encode("1234"))
+				.role("police")
+				.build();
+		uRepo.save(user);
+		
+		return "redirect:login";
 	}
 	
 	@GetMapping("/demoapi")
@@ -60,6 +87,14 @@ public class MainController {
 	@GetMapping("/Chart")
 	public String Chart(){
 		return "Graph";
+		/*
+		 * for(String str:arr) { System.out.println(str); }
+		 */
+	}
+	@GetMapping("/socket")
+	public String RTC(){
+		log.info("@MainController,socket GET()");
+		return "index3";
 		/*
 		 * for(String str:arr) { System.out.println(str); }
 		 */

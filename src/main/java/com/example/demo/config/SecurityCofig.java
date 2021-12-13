@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import org.antlr.v4.parse.GrammarTreeVisitor.exceptionHandler_return;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -7,7 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import com.example.demo.login.MyLoginSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -18,11 +18,13 @@ public class SecurityCofig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf()
 				.disable()
+			.httpBasic()	
+				.disable()
 			.authorizeRequests()
-				.antMatchers("/Login","/signUp","/index","/Chart")
+				.antMatchers("/Login","/signUp","/index","/Chart","/socket")
 					.permitAll()
 				.anyRequest()
-				.authenticated()
+					.authenticated()
 			.and()
 			.formLogin()
 				.loginPage("/Login")
@@ -34,6 +36,7 @@ public class SecurityCofig extends WebSecurityConfigurerAdapter {
 			.logout()
 				.logoutUrl("/doLogout")
 				.logoutSuccessUrl("/login");
+		
 				
 	}
 	@Bean

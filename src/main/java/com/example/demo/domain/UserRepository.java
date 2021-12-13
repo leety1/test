@@ -1,8 +1,8 @@
 
-package com.example.demo.login;
+package com.example.demo.domain;
 
 import java.util.Optional;
-import com.example.demo.login.UserEntity;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
