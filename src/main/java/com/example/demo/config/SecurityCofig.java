@@ -21,8 +21,9 @@ public class SecurityCofig extends WebSecurityConfigurerAdapter {
 			.httpBasic()	
 				.disable()
 			.authorizeRequests()
-				.antMatchers("/Login","/signUp","/index","/Chart","/socket")
-					.permitAll()
+				.antMatchers("/Login","/signUp","/index","/Chart","/socket","/user","/Chart/bar").permitAll()
+				.antMatchers("/").hasRole("USER")
+				.antMatchers("/admin").hasRole("ADMIN")
 				.anyRequest()
 					.authenticated()
 			.and()
@@ -44,7 +45,6 @@ public class SecurityCofig extends WebSecurityConfigurerAdapter {
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 		System.out.println("머지 이건");
 		return encoder;
-		
 	}
 
 

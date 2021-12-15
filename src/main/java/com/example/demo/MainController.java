@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,8 @@ import java.util.Map.Entry;
 import com.example.demo.config.TestConfig;
 import com.example.demo.domain.UserEntity;
 import com.example.demo.domain.UserRepository;
+import com.example.demo.domain.UserinfoDto;
+import com.example.demo.login.UserSerive;
 
 
 @Controller
@@ -40,6 +43,8 @@ public class MainController {
 	private PasswordEncoder paEnc;
 	@Autowired
 	TestConfig testConfig;
+	@Autowired
+	private UserSerive uservice;
 	
 	@RequestMapping({"/hello"})
 	public String firstPage() {
@@ -63,19 +68,24 @@ public class MainController {
 		}
 		return "index";
 	}
-	
-	@GetMapping("/signUp")
-	public String signUp() {
-		Map<String, Object> map = new HashMap<>();
-		UserEntity user  = UserEntity.builder()
-				.name("Leety")
-				.password(paEnc.encode("1234"))
-				.role("police")
-				.build();
-		uRepo.save(user);
-		
-		return "redirect:login";
+	@PostMapping("/user")
+	public String signup(UserinfoDto userDto) {
+		uservice.save(userDto);
+		return "redirect:/login";
 	}
+	
+//	@GetMapping("/user")
+//	public String signUp() {
+//		Map<String, Object> map = new HashMap<>();
+//		UserEntity user  = UserEntity.builder()
+//				.name("Leety")
+//				.password(paEnc.encode("1234"))
+//				.role("police")
+//				.build();
+//		uRepo.save(user);
+//		
+//		return "redirect:login";
+//	}
 	
 	@GetMapping("/demoapi")
 	public Map<String,Object> demoapi(){
@@ -87,6 +97,13 @@ public class MainController {
 	@GetMapping("/Chart")
 	public String Chart(){
 		return "Graph";
+		/*
+		 * for(String str:arr) { System.out.println(str); }
+		 */
+	}
+	@GetMapping("/Chart/bar")
+	public String ChartBar(){
+		return "bar";
 		/*
 		 * for(String str:arr) { System.out.println(str); }
 		 */
