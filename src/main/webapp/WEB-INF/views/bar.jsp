@@ -9,9 +9,20 @@
 <style>
     body{padding: 5%;text-align: center;}
     canvas{border: 1px solid gray;border-radius: 3px;}
+    #im_hover{
+    	width: 50px;
+    	height: auto;
+    	padding: 5px;
+    	border: 1px solid rgb(177, 177, 177);
+    	position:absolute;
+    	display:none;
+    	background: rgba(111,231,43,0,5);
+    	border-radius: 5px;
+    }
 </style>
 <body>
     <canvas width='400' height='400' id='canvas'></canvas>
+    <div id = 'im_hover'></div>
 </body>
 <script>
 	var web = null;
@@ -108,8 +119,12 @@
         if (inn.result) {
             drawed = true;
             hoverDrawing(inn.index);
+            toolTipMaker(inn.value,event.clientX,event.clientY,true);
         } else {
-            if(drawed) hoverDrawing(-1);
+            if(drawed) {
+            	hoverDrawing(-1);
+            	toolTipMaker(0,0,0,false);
+            }
         }
     }); 
 
@@ -123,7 +138,9 @@
             var end_x = start_x + wid;
             var start_y = position.max_y* ( 1-(data/100) );
             var end_y = position.max_y; 
+            
             if(x1 >= start_x && x1 <= end_x){  
+            	
                 if(y1 >= start_y && y1 <= end_y){
                     result = true;
                     index = i;    
@@ -132,6 +149,19 @@
             } 
         }
         return {result:result, index:index};
+    }
+    
+    function toolTipMaker(text, pos_x, pos_y, onOff){
+    	var hover = document.getElementById('im_hover');
+    	if(!onOff){
+    		hover.style.display = 'none';
+    		hover.innerHTML = '';
+    	}else{
+    		hover.style.display = 'block';
+    		hover.style.left = pos_x + pos_x*0.02;
+    		hover.style.top = pos_y + pos_y*0.02;
+    		hover.innerHTML = text;
+    	}
     }
 
     
