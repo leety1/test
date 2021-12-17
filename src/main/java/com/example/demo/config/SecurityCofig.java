@@ -21,7 +21,7 @@ public class SecurityCofig extends WebSecurityConfigurerAdapter {
 			.httpBasic()	
 				.disable()
 			.authorizeRequests()
-				.antMatchers("/Login","/signUp","/index","/Chart","/socket","/user","/Chart/bar").permitAll()
+				.antMatchers("/Login","/signUp","/index","/Chart","/websocket","/user","/Chart/bar","/graphql","/chat").permitAll()
 				.antMatchers("/").hasRole("USER")
 				.antMatchers("/admin").hasRole("ADMIN")
 				.anyRequest()

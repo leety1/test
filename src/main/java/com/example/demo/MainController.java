@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Spliterator;
 
@@ -50,7 +51,10 @@ public class MainController {
 	public String firstPage() {
 		return "Hello World";
 	}
-
+	@RequestMapping(value = "/chat", method = RequestMethod.GET)
+    public String chat(Locale locale, Model model) {
+        return "chat";
+    }
 	@GetMapping("/Login")
 	public String getIndex() {
 		
@@ -68,24 +72,28 @@ public class MainController {
 		}
 		return "index";
 	}
+//	@PostMapping("/user")
+//	public String signup(UserinfoDto userDto) {
+//		uservice.save(userDto);
+//		return "redirect:/login";
+//	}
+	
 	@PostMapping("/user")
-	public String signup(UserinfoDto userDto) {
-		uservice.save(userDto);
+	public String signUp(UserEntity ue) {
+		Map<String, Object> map = new HashMap<>();
+		UserEntity user  = UserEntity.builder()
+				.name(ue.getName())
+				.password(ue.getPassword())
+				.role(ue.getRole())
+				.build();
+		System.out.println(ue.getName()+"\n");
+		System.out.println(ue.getPassword()+"\n");
+		System.out.println(ue.getRole()+"\n");
+		
+		uRepo.save(user);
+		
 		return "redirect:/login";
 	}
-	
-//	@GetMapping("/user")
-//	public String signUp() {
-//		Map<String, Object> map = new HashMap<>();
-//		UserEntity user  = UserEntity.builder()
-//				.name("Leety")
-//				.password(paEnc.encode("1234"))
-//				.role("police")
-//				.build();
-//		uRepo.save(user);
-//		
-//		return "redirect:login";
-//	}
 	
 	@GetMapping("/demoapi")
 	public Map<String,Object> demoapi(){
@@ -108,14 +116,14 @@ public class MainController {
 		 * for(String str:arr) { System.out.println(str); }
 		 */
 	}
-	@GetMapping("/socket")
-	public String RTC(){
-		log.info("@MainController,socket GET()");
-		return "index3";
-		/*
-		 * for(String str:arr) { System.out.println(str); }
-		 */
-	}
+//	@GetMapping("/socket")
+//	public String RTC(){
+//		log.info("@MainController,socket GET()");
+//		return "index3";
+//		/*
+//		 * for(String str:arr) { System.out.println(str); }
+//		 */
+//	}
 	@GetMapping("/arr")
 	public Stream<String> arr() {
 		String[] arr = new String[] {"a","b","c"};

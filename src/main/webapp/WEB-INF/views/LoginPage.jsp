@@ -18,5 +18,10 @@
 	<input type="submit" value ="Sign Up Page" onClick="location.href='/user'";>
 	<input type="submit" value ="Index Page" onClick="location.href='/index'";>
 	<input type="submit" value ="Chart Page" onClick="location.href='/Chart'";>
+	<input type="submit" value ="Chat Page" onClick="location.href='/chat'";>
 </body>
+<script>
+
+
+</script>
 </html>

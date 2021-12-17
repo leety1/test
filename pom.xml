@@ -121,6 +121,17 @@
   <scope>import</scope>
   <type>pom</type>
 </dependency>
+	<!-- graphQL -->
+	<dependency>
+    <groupId>com.graphql-java</groupId>
+    <artifactId>graphql-spring-boot-starter</artifactId>
+    <version>5.0.2</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.graphql-java</groupId>
+	    <artifactId>graphql-java-tools</artifactId>
+	    <version>5.2.4</version>
+	</dependency>
 
 	<!-- jpa 를 위한 자리 -->
 	<dependency>

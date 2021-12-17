@@ -58,12 +58,7 @@ public class UserEntity{
 		
 		return roles;
 	}
-	public String getUsername() {
-		return name;
-	}
-	public String getPassword() {
-		return password;
-	}
+	
 	public boolean isAcntNonExpired() {
 		return true;//만료되지 않음
 	}
