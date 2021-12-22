@@ -28,6 +28,8 @@ import com.sun.source.tree.BinaryTree;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.Map.Entry;
+
+import com.example.demo.Redis.RedisSampleService;
 import com.example.demo.config.TestConfig;
 import com.example.demo.domain.UserEntity;
 import com.example.demo.domain.UserRepository;
@@ -168,8 +170,11 @@ public class MainController {
 	public void sendMessage(String message) {
 		kafkaSampleProducerService.sendMessage(message);
 	}
-	
-	
-	
-	
+	//REDIS 컨트롤
+	@Autowired
+	private RedisSampleService redisSampleService;
+	@PostMapping(value = "/getRedisStringValue")
+	public void getRedisStringValue(String key,String value) {
+	redisSampleService.getRedisStringValue(key,value);
+	}	
 }
