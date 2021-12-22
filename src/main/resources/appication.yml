@@ -49,6 +49,19 @@ mybatis:
     #type-aliases-package: model 사용 시 매핑할 패키지 경로를 작성합니다.
     mapper-locations: mappers/**/*.xml
     
+spring:
+  kafka:
+   consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group-id-oing
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
 
 
    

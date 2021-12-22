@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Spliterator;
-
+import com.example.demo.kafka.KafkaSampleProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -161,7 +161,13 @@ public class MainController {
 	 * @Autowired private UserRepository userRepo;
 	 */
 	
-	
+	//Kafka 컨트롤러
+	@Autowired
+	private KafkaSampleProducerService kafkaSampleProducerService;
+	@PostMapping(value = "/sendMessage")
+	public void sendMessage(String message) {
+		kafkaSampleProducerService.sendMessage(message);
+	}
 	
 	
 	
